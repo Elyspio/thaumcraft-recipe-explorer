@@ -1,7 +1,8 @@
 import { Alert, Box, Button, Stack, Typography } from "@mui/material";
 import AutoAwesomeRoundedIcon from "@mui/icons-material/AutoAwesomeRounded";
+import ImageSearchRoundedIcon from "@mui/icons-material/ImageSearchRounded";
 import LayersClearRoundedIcon from "@mui/icons-material/LayersClearRounded";
-import { useAppStore } from "@/core/store/appStore";
+import { useAppStore, type StoredResult } from "@/core/store/appStore";
 import { ResultPath } from "./ResultPath";
 
 export function Results() {
@@ -49,9 +50,44 @@ export function Results() {
 				</Box>
 			)}
 
-			{results.map((result) => (
-				<ResultPath key={`${result.from}->${result.to}`} result={result} />
-			))}
+			{groupByNote(results).map((group) => {
+				const body = group.results.map((result) => <ResultPath key={`${result.from}->${result.to}`} result={result} />);
+				if (!group.noteId) return body;
+
+				return (
+					<Box
+						key={group.noteId}
+						sx={(t) => ({
+							pl: 1.5,
+							borderLeft: `2px solid ${t.palette.custom.accent}`,
+							display: "flex",
+							flexDirection: "column",
+							gap: 1.5,
+						})}
+					>
+						<Stack direction="row" spacing={0.75} alignItems="center">
+							<ImageSearchRoundedIcon sx={{ fontSize: 15, color: "accent.main" }} />
+							<Typography variant="eyebrow">
+								From one note · {group.results.length} search{group.results.length === 1 ? "" : "es"}
+							</Typography>
+						</Stack>
+						{body}
+					</Box>
+				);
+			})}
 		</Stack>
 	);
+}
+
+/** Keeps searches read from the same screenshot visually together. */
+function groupByNote(results: StoredResult[]): { noteId?: string; results: StoredResult[] }[] {
+	const groups: { noteId?: string; results: StoredResult[] }[] = [];
+
+	for (const result of results) {
+		const last = groups.at(-1);
+		if (last && last.noteId === result.noteId) last.results.push(result);
+		else groups.push({ noteId: result.noteId, results: [result] });
+	}
+
+	return groups;
 }

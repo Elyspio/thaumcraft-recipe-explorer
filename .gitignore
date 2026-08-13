@@ -15,3 +15,7 @@ deploy/build/cache/.build-counter
 
 # Local source checkout of the original project
 front/.source-tcresearch/
+
+# Vitest browser-mode artefacts (failure screenshots, attachments)
+front/.vitest-attachments/
+front/tests/__screenshots__/
