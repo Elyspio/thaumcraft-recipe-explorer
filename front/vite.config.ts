@@ -1,6 +1,7 @@
 import { fileURLToPath } from "node:url";
 import { getDefaultConfig } from "@elyspio/vite-eslint-config";
 import { defineConfig } from "vite-plus";
+import { playwright } from "vitest/browser-playwright";
 
 // mkcert (HTTPS) is disabled so the dev server runs over plain HTTP — simpler
 // for a static client-only app and compatible with headless preview tooling.
@@ -34,5 +35,13 @@ export default defineConfig({
 	lint: {
 		...config.lint,
 		ignorePatterns: [...config.lint.ignorePatterns, "public/**"],
+	},
+	test: {
+		browser: {
+			enabled: true,
+			provider: playwright(),
+			headless: true,
+			instances: [{ browser: "chromium" }],
+		},
 	},
 });
