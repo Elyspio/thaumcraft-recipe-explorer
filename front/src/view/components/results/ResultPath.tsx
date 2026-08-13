@@ -1,6 +1,7 @@
 import { Box, Chip, Divider, IconButton, Paper, Stack, Tooltip, Typography } from "@mui/material";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
+import SwapHorizRoundedIcon from "@mui/icons-material/SwapHorizRounded";
 import { useAppStore } from "@/core/store/appStore";
 import { aspectLabel } from "@data/aspectMeta";
 import type { ResolvedPath } from "@/core/pathfinding/find";
@@ -10,6 +11,7 @@ import { CombinationTooltip } from "../ui/CombinationTooltip";
 
 export function ResultPath({ result }: { result: ResolvedPath }) {
 	const removeResult = useAppStore((s) => s.removeResult);
+	const invertResult = useAppStore((s) => s.invertResult);
 
 	return (
 		<Paper
@@ -28,6 +30,16 @@ export function ResultPath({ result }: { result: ResolvedPath }) {
 					<ArrowForwardRoundedIcon sx={{ fontSize: 16, color: "accent.main" }} />
 					<Typography sx={{ fontWeight: 600 }}>{aspectLabel(result.to)}</Typography>
 					<Chip label={`${result.totalSteps} step${result.totalSteps === 1 ? "" : "s"}`} size="small" />
+					<Tooltip title="Reverse" arrow>
+						<IconButton
+							size="small"
+							aria-label="Reverse"
+							onClick={() => invertResult(result.from, result.to)}
+							sx={{ color: "accent.main" }}
+						>
+							<SwapHorizRoundedIcon fontSize="small" />
+						</IconButton>
+					</Tooltip>
 				</Stack>
 				<Tooltip title="Close" arrow>
 					<IconButton size="small" onClick={() => removeResult(result.from, result.to)} sx={{ color: "text.secondary" }}>
