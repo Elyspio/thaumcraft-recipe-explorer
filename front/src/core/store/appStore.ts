@@ -69,6 +69,8 @@ interface AppState {
 	run: () => void;
 	/** Runs one search without touching the manual From/To/Min. Steps selection. */
 	runPair: (from: AspectName, to: AspectName, minSteps: number, noteId?: string) => boolean;
+	/** Flips a listed result end for end — the graph is undirected, so B→A is the same path read backwards. */
+	invertResult: (from: AspectName, to: AspectName) => void;
 	removeResult: (from: AspectName, to: AspectName) => void;
 	clearResults: () => void;
 }
@@ -174,6 +176,21 @@ export const useAppStore = create<AppState>()(
 				set({ results: [resolved, ...others], error: null });
 				return true;
 			},
+
+			invertResult: (from, to) =>
+				set((s) => {
+					const index = s.results.findIndex((r) => r.from === from && r.to === to);
+					if (index < 0) return {};
+					const result = s.results[index];
+					// Usage counts and the step total are symmetric, so only the endpoints
+					// and the path order change.
+					const inverted: StoredResult = { ...result, from: to, to: from, path: [...result.path].reverse() };
+					const results = s.results.map((r, i) => (i === index ? inverted : r));
+					// Keep the card at its index — note grouping in the results list is
+					// built from adjacency — and drop any card already holding the
+					// reversed pair.
+					return { results: results.filter((r, i) => i === index || !(r.from === to && r.to === from)) };
+				}),
 
 			removeResult: (from, to) => set((s) => ({ results: s.results.filter((r) => !(r.from === from && r.to === to)) })),
 
