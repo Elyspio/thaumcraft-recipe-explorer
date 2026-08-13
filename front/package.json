@@ -1,0 +1,40 @@
+{
+	"name": "thaumcraft-recipe-explorer",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "vp dev",
+		"build": "tsc && vp build",
+		"preview": "vp preview",
+		"lint": "vp lint",
+		"test": "vp test"
+	},
+	"dependencies": {
+		"@emotion/react": "^11.14.0",
+		"@emotion/styled": "^11.14.1",
+		"@fontsource/geist-mono": "^5.2.8",
+		"@fontsource/geist-sans": "^5.2.5",
+		"@mui/icons-material": "^7.3.4",
+		"@mui/material": "^7.3.4",
+		"clsx": "^2.1.1",
+		"react": "^19.2.0",
+		"react-dom": "^19.2.0",
+		"zustand": "^5.0.13"
+	},
+	"devDependencies": {
+		"@elyspio/vite-eslint-config": "npmjs:@elyspio/vite-eslint-config@5.0.3",
+		"@types/node": "^25.9.1",
+		"@types/react": "^19.2.2",
+		"@types/react-dom": "^19.2.2",
+		"sass": "^1.93.2",
+		"typescript": "6.0.3",
+		"vite": "catalog:",
+		"vite-plus": "catalog:",
+		"vitest": "catalog:"
+	},
+	"engines": {
+		"node": ">=22.0.0"
+	},
+	"packageManager": "pnpm@11.21.0"
+}

@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# IDE and local tooling
+.idea/
+.claude/
+*.local
+.DS_Store
+
+# Deployment-generated state
+deploy/build/cache/.build-counter
+
+# Local source checkout of the original project
+front/.source-tcresearch/

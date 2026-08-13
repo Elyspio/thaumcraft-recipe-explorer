@@ -1,0 +1,14 @@
+{
+	"name": "coexya-sous-marin-jaune-deploy",
+	"version": "1.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"docker": "node build/build.js",
+		"dry-run": "node build/build.js --dry-run"
+	},
+	"dependencies": {
+		"@elyspio/kubernetes-deploy": "^1.0.0"
+	},
+	"packageManager": "pnpm@11.21.0"
+}

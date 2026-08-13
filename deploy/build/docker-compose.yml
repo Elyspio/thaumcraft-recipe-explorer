@@ -1,0 +1,8 @@
+services:
+  thaumcraft-recipe-explorer:
+    image: elyspio/thaumcraft-recipe-explorer:${IMAGE_TAG}
+    build:
+      context: ../..
+      dockerfile: deploy/build/dockerfile
+      args:
+        APP_VERSION: ${IMAGE_TAG:-dev}
