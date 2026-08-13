@@ -26,6 +26,21 @@ to its author and contributors for making that work available.
 
 Everything runs in the browser; there is no backend service.
 
+## Public demo
+
+Try the deployed application at
+<https://thaumcraft-explorer.mc.elyspio.fr>.
+
+## Screenshots
+
+### Recipe preview in the results
+
+![Recipe preview displayed when hovering an aspect in the results](docs/screenshots/result-recipe-tooltip.png)
+
+### Aspect availability and addons
+
+![Aspect availability and addon selection](docs/screenshots/aspects-and-results.png)
+
 ## Development
 
 ```bash
