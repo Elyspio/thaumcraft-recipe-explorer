@@ -31,6 +31,11 @@ function freshForVersion(version: string, enableAddons = false): FreshState {
 	};
 }
 
+/** A path plus where it came from — `noteId` groups the searches of one screenshot. */
+export interface StoredResult extends ResolvedPath {
+	noteId?: string;
+}
+
 interface AppState {
 	mode: ThemeMode;
 	version: string;
@@ -40,7 +45,7 @@ interface AppState {
 	minSteps: number;
 	/** Source of truth for availability — disabled aspects cost 100 in pathfinding. */
 	disabled: Set<AspectName>;
-	results: ResolvedPath[];
+	results: StoredResult[];
 	error: string | null;
 	/** "GTNH 2.9" preset active: version 4.2.2.0 with every addon enabled. */
 	gtnh: boolean;
@@ -59,7 +64,11 @@ interface AppState {
 	setAllAvailable: (available: boolean) => void;
 	toggleAddon: (id: string) => void;
 	isAddonEnabled: (id: string) => boolean;
+	/** Marks aspects as available without disturbing the GTNH preset. */
+	enableAspects: (aspects: readonly AspectName[]) => void;
 	run: () => void;
+	/** Runs one search without touching the manual From/To/Min. Steps selection. */
+	runPair: (from: AspectName, to: AspectName, minSteps: number, noteId?: string) => boolean;
 	removeResult: (from: AspectName, to: AspectName) => void;
 	clearResults: () => void;
 }
@@ -136,17 +145,34 @@ export const useAppStore = create<AppState>()(
 				return aspects.length > 0 && aspects.every((a) => !disabled.has(a));
 			},
 
+			enableAspects: (aspects) =>
+				set((s) => {
+					if (aspects.every((a) => !s.disabled.has(a))) return {};
+					const disabled = new Set(s.disabled);
+					for (const aspect of aspects) disabled.delete(aspect);
+					// Deliberately no `gtnh: false` here, unlike `toggleAspect`: an
+					// aspect printed on the note is proof it exists in the save, not a
+					// deliberate departure from the preset.
+					return { disabled };
+				}),
+
 			run: () => {
-				const { model, from, to, minSteps, disabled, results } = get();
+				const { from, to, minSteps, runPair } = get();
+				runPair(from, to, minSteps);
+			},
+
+			runPair: (from, to, minSteps, noteId) => {
+				const { model, disabled, results } = get();
 				const graph = buildGraph(model.combinations);
 				const path = find(graph, from, to, minSteps, disabled);
 				if (!path) {
 					set({ error: `No connection found from ${aspectLabel(from)} to ${aspectLabel(to)}. Try lowering Min. Steps or enabling more aspects.` });
-					return;
+					return false;
 				}
-				const resolved = summarizePath(from, to, path);
+				const resolved: StoredResult = { ...summarizePath(from, to, path), noteId };
 				const others = results.filter((r) => !(r.from === from && r.to === to));
 				set({ results: [resolved, ...others], error: null });
+				return true;
 			},
 
 			removeResult: (from, to) => set((s) => ({ results: s.results.filter((r) => !(r.from === from && r.to === to)) })),

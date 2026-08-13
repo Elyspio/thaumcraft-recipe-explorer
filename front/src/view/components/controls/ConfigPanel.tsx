@@ -4,6 +4,7 @@ import SwapVertRoundedIcon from "@mui/icons-material/SwapVertRounded";
 import TravelExploreRoundedIcon from "@mui/icons-material/TravelExploreRounded";
 import { useAppStore } from "@/core/store/appStore";
 import { versionKeys } from "@data/versions";
+import { NoteDropZone } from "../note/NoteDropZone";
 import { AspectSelect } from "./AspectSelect";
 
 function FieldLabel({ children }: { children: string }) {
@@ -77,6 +78,8 @@ export function ConfigPanel() {
 						))}
 					</TextField>
 				</Box>
+
+				<NoteDropZone />
 
 				<Box>
 					<FieldLabel>From → To</FieldLabel>
