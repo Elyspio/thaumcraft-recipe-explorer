@@ -1,20 +1,26 @@
 # Building front
-FROM node:24 AS builder-front
+FROM node:26 AS builder-front
 
-WORKDIR /front
+ARG PNPM_VERSION=11.21.0
 
-COPY front/package.json front/pnpm-lock.yaml front/pnpm-workspace.yaml /front/
-RUN corepack enable && pnpm install --frozen-lockfile --ignore-scripts
+RUN npm install -g pnpm@$PNPM_VERSION
 
-COPY front /front/
+WORKDIR /workspace
+
+COPY package.json pnpm-workspace.yaml ./
+COPY front/pnpm-lock.yaml ./front/pnpm-lock.yaml
+COPY front/package.json ./front/package.json
+RUN pnpm install --filter ./front
+
+COPY front ./front
 # Version affichée dans l'application = tag Docker injecté par l'outil de déploiement.
 ARG APP_VERSION=dev
 ENV VITE_APP_VERSION=$APP_VERSION
-RUN pnpm build
+RUN pnpm --filter ./front build
 
 
 # Running — serve the static build with nginx on port 8080.
 # nginx-unprivileged listens on 8080 by default and runs as a non-root user.
 FROM nginxinc/nginx-unprivileged:alpine AS production
-COPY --from=builder-front /front/dist /usr/share/nginx/html
+COPY --from=builder-front /workspace/front/dist /usr/share/nginx/html
 EXPOSE 8080

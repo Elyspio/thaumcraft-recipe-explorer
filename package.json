@@ -4,8 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "pnpm --dir front dev",
-    "publish": "pnpm --dir deploy docker"
+    "dev": "pnpm --filter ./front dev",
+    "build": "pnpm --filter ./front build",
+    "test": "pnpm --filter ./front test",
+    "lint": "pnpm --filter ./front lint",
+    "preview": "pnpm --filter ./front preview",
+    "deploy:dry-run": "pnpm --filter ./deploy dry-run",
+    "deploy": "pnpm --filter ./deploy docker"
   },
   "keywords": [],
   "author": "",

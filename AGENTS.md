@@ -20,11 +20,11 @@ Use Node.js 22 or newer and pnpm 11.21.0.
 ```bash
 pnpm install                 # install workspace dependencies
 pnpm dev                     # start the frontend dev server
-pnpm --dir front build       # type-check and create a production build
-pnpm --dir front test        # run Vitest tests
-pnpm --dir front lint        # run ESLint through Vite Plus
-pnpm --dir front preview     # serve the production build locally
-pnpm --dir deploy dry-run    # validate deployment generation without publishing
+pnpm build                   # type-check and create a production build
+pnpm test                    # run Vitest tests
+pnpm lint                    # run ESLint through Vite Plus
+pnpm preview                 # serve the production build locally
+pnpm deploy:dry-run          # validate deployment generation without publishing
 ```
 
 ## Coding Style & Naming Conventions

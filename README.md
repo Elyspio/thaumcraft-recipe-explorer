@@ -45,7 +45,7 @@ Try the deployed application at
 
 ```bash
 pnpm install
-pnpm --dir front dev
+pnpm dev
 ```
 
 The development server runs at <http://localhost:5173>.
@@ -53,9 +53,10 @@ The development server runs at <http://localhost:5173>.
 Useful checks:
 
 ```bash
-pnpm --dir front build
-pnpm --dir front lint
-pnpm --dir front test
+pnpm build
+pnpm lint
+pnpm test
+pnpm deploy:dry-run
 ```
 
 ## Project structure

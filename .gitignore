@@ -19,3 +19,4 @@ front/.source-tcresearch/
 # Vitest browser-mode artefacts (failure screenshots, attachments)
 front/.vitest-attachments/
 front/tests/__screenshots__/
+.angularjs-lsp
