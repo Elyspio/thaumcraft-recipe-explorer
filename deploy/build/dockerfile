@@ -1,14 +1,13 @@
 # Building front
 FROM node:26 AS builder-front
 
-ARG PNPM_VERSION=11.21.0
+ARG PNPM_VERSION=12.5.1
 
 RUN npm install -g pnpm@$PNPM_VERSION
 
 WORKDIR /workspace
 
 COPY package.json pnpm-workspace.yaml ./
-COPY front/pnpm-lock.yaml ./front/pnpm-lock.yaml
 COPY front/package.json ./front/package.json
 RUN pnpm install --filter ./front
 
