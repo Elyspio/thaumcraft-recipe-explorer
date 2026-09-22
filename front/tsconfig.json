@@ -10,7 +10,7 @@
 			"@components/*": ["./src/view/components/*"],
 			"@hooks/*": ["./src/view/hooks/*"]
 		},
-		"types": ["vite/client"]
+		"types": ["vite-plus/client"]
 	},
 	"include": ["src", "tests", "vite.config.ts"]
 }
