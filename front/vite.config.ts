@@ -16,9 +16,7 @@ const customAliases = {
 };
 const defaultAliases = config.resolve?.alias;
 const aliases = [
-	...(Array.isArray(defaultAliases)
-		? defaultAliases
-		: Object.entries(defaultAliases ?? {}).map(([find, replacement]) => ({ find, replacement }))),
+	...(Array.isArray(defaultAliases) ? defaultAliases : Object.entries(defaultAliases ?? {}).map(([find, replacement]) => ({ find, replacement }))),
 	...Object.entries(customAliases).map(([find, replacement]) => ({ find, replacement })),
 ];
 
