@@ -36,7 +36,14 @@ export function NoteDropZone() {
 					"&:hover": { borderColor: t.palette.custom.accent },
 				})}
 			>
-				<Stack direction="row" spacing={1} alignItems="center" justifyContent="center">
+				<Stack
+					direction="row"
+					spacing={1}
+					sx={{
+						alignItems: "center",
+						justifyContent: "center",
+					}}
+				>
 					<ImageSearchRoundedIcon sx={{ fontSize: 18, color: "accent.main" }} />
 					<Typography sx={{ fontSize: 13, fontWeight: 600 }}>Read a note screenshot</Typography>
 				</Stack>
@@ -44,7 +51,6 @@ export function NoteDropZone() {
 					Paste, drop or click — cropped to the note
 				</Typography>
 			</Box>
-
 			<input
 				ref={input}
 				type="file"

@@ -87,10 +87,15 @@ export function NoteReviewDialog() {
 					<CloseRoundedIcon fontSize="small" />
 				</IconButton>
 			</DialogTitle>
-
 			<DialogContent dividers>
 				{status === "working" && (
-					<Stack alignItems="center" spacing={2} sx={{ py: 8 }}>
+					<Stack
+						spacing={2}
+						sx={{
+							alignItems: "center",
+							py: 8,
+						}}
+					>
 						<CircularProgress size={28} />
 						<Typography sx={{ fontSize: 13.5, color: "text.secondary" }}>Reading the note…</Typography>
 					</Stack>
@@ -101,14 +106,7 @@ export function NoteReviewDialog() {
 				{status === "ready" && (
 					<Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "minmax(0, 1fr) minmax(0, 1fr)" }, gap: 3 }}>
 						{imageUrl && (
-							<AnnotatedImage
-								imageUrl={imageUrl}
-								imageWidth={imageWidth}
-								imageHeight={imageHeight}
-								aspects={aspects}
-								pendingIndex={pendingIndex}
-								onPick={pick}
-							/>
+							<AnnotatedImage imageUrl={imageUrl} imageWidth={imageWidth} imageHeight={imageHeight} aspects={aspects} pendingIndex={pendingIndex} onPick={pick} />
 						)}
 
 						<Stack spacing={2.25} sx={{ minWidth: 0 }}>
@@ -116,8 +114,8 @@ export function NoteReviewDialog() {
 
 							{unknown.length > 0 && (
 								<Alert severity="warning">
-									{unknown.map(aspectLabel).join(", ")} {unknown.length > 1 ? "are" : "is"} not part of version {version}. Switch version or enable the
-									matching addon before searching.
+									{unknown.map(aspectLabel).join(", ")} {unknown.length > 1 ? "are" : "is"} not part of version {version}. Switch version or enable the matching
+									addon before searching.
 								</Alert>
 							)}
 
@@ -128,7 +126,14 @@ export function NoteReviewDialog() {
 									</Typography>
 									<Stack spacing={1}>
 										{aspects.map((detected, index) => (
-											<Stack key={`${detected.box.x}-${detected.box.y}`} direction="row" spacing={1.25} alignItems="center">
+											<Stack
+												key={`${detected.box.x}-${detected.box.y}`}
+												direction="row"
+												spacing={1.25}
+												sx={{
+													alignItems: "center",
+												}}
+											>
 												<AspectIcon aspect={detected.aspect} size={28} />
 												<Box sx={{ flex: 1, minWidth: 0 }}>
 													<AspectSelect label={`Aspect ${index + 1}`} value={detected.aspect} onChange={(a) => setAspect(index, a)} />
@@ -145,7 +150,11 @@ export function NoteReviewDialog() {
 							)}
 
 							{ignored.length > 0 && (
-								<Accordion disableGutters elevation={0} sx={(t) => ({ border: `1px solid ${t.palette.custom.line}`, borderRadius: 1, "&::before": { display: "none" } })}>
+								<Accordion
+									disableGutters
+									elevation={0}
+									sx={(t) => ({ border: `1px solid ${t.palette.custom.line}`, borderRadius: 1, "&::before": { display: "none" } })}
+								>
 									<AccordionSummary expandIcon={<ExpandMoreRoundedIcon />}>
 										<Typography sx={{ fontSize: 13 }}>{ignored.length} area(s) ignored</Typography>
 									</AccordionSummary>
@@ -176,7 +185,6 @@ export function NoteReviewDialog() {
 					</Box>
 				)}
 			</DialogContent>
-
 			<DialogActions sx={{ px: 3, py: 2 }}>
 				<Button onClick={close}>Cancel</Button>
 				<Button variant="accent" startIcon={<TravelExploreRoundedIcon />} disabled={pairs.length === 0} onClick={launch}>
