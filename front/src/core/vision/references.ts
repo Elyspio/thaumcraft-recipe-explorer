@@ -26,7 +26,7 @@ export function loadReferenceIcons(): Promise<ReferenceIcon[]> {
 			const response = await fetch(aspectIcon(aspect, "color"));
 			if (!response.ok) throw new Error(`Cannot load icon for ${aspect}: HTTP ${response.status}`);
 			return { aspect, image: await decodeImage(await response.blob()) };
-		}),
+		})
 	);
 	return pending;
 }

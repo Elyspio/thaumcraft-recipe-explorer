@@ -14,8 +14,20 @@ export function Results() {
 
 	return (
 		<Stack spacing={1.5}>
-			<Stack direction="row" alignItems="center" justifyContent="space-between">
-				<Stack direction="row" spacing={1} alignItems="baseline">
+			<Stack
+				direction="row"
+				sx={{
+					alignItems: "center",
+					justifyContent: "space-between",
+				}}
+			>
+				<Stack
+					direction="row"
+					spacing={1}
+					sx={{
+						alignItems: "baseline",
+					}}
+				>
 					<Typography variant="h3">Results</Typography>
 					{results.length > 0 && <Typography variant="eyebrow">{results.length}</Typography>}
 				</Stack>
@@ -25,13 +37,11 @@ export function Results() {
 					</Button>
 				)}
 			</Stack>
-
 			{error && (
 				<Alert severity="warning" variant="outlined">
 					{error}
 				</Alert>
 			)}
-
 			{isEmpty && (
 				<Box
 					sx={(t) => ({
@@ -49,7 +59,6 @@ export function Results() {
 					</Typography>
 				</Box>
 			)}
-
 			{groupByNote(results).map((group) => {
 				const body = group.results.map((result) => <ResultPath key={`${result.from}->${result.to}`} result={result} />);
 				if (!group.noteId) return body;
@@ -65,7 +74,13 @@ export function Results() {
 							gap: 1.5,
 						})}
 					>
-						<Stack direction="row" spacing={0.75} alignItems="center">
+						<Stack
+							direction="row"
+							spacing={0.75}
+							sx={{
+								alignItems: "center",
+							}}
+						>
 							<ImageSearchRoundedIcon sx={{ fontSize: 15, color: "accent.main" }} />
 							<Typography variant="eyebrow">
 								From one note · {group.results.length} search{group.results.length === 1 ? "" : "es"}

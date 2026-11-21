@@ -24,7 +24,15 @@ export function Topbar() {
 				backdropFilter: "blur(8px)",
 			})}
 		>
-			<Stack direction="row" spacing={1.5} alignItems="center" sx={{ minWidth: 0 }} title={`Version ${appVersion}`}>
+			<Stack
+				direction="row"
+				spacing={1.5}
+				title={`Version ${appVersion}`}
+				sx={{
+					alignItems: "center",
+					minWidth: 0,
+				}}
+			>
 				<Box
 					component="img"
 					src={aspectIcon("magic")}
@@ -44,10 +52,22 @@ export function Topbar() {
 					</Typography>
 				</Box>
 			</Stack>
-
-			<Stack direction="row" spacing={0.5} alignItems="center">
+			<Stack
+				direction="row"
+				spacing={0.5}
+				sx={{
+					alignItems: "center",
+				}}
+			>
 				<Tooltip title="Source on GitHub" arrow>
-					<IconButton component="a" href="https://github.com/Elyspio/thaumcraft-recipe-explorer" target="_blank" rel="noreferrer" size="small" sx={{ color: "text.secondary" }}>
+					<IconButton
+						component="a"
+						href="https://github.com/Elyspio/thaumcraft-recipe-explorer"
+						target="_blank"
+						rel="noreferrer"
+						size="small"
+						sx={{ color: "text.secondary" }}
+					>
 						<GitHubIcon fontSize="small" />
 					</IconButton>
 				</Tooltip>

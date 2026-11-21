@@ -204,6 +204,6 @@ export const useAppStore = create<AppState>()(
 				if (state.gtnh) Object.assign(state, freshForVersion(GTNH_VERSION, true), { version: GTNH_VERSION });
 				else Object.assign(state, freshForVersion(state.version));
 			},
-		},
-	),
+		}
+	)
 );

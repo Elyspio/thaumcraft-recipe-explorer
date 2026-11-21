@@ -50,8 +50,10 @@ export function AspectSelect({ label, value, onChange }: AspectSelectProps) {
 					{...params}
 					label={label}
 					slotProps={{
+						...params.slotProps,
+
 						input: {
-							...params.InputProps,
+							...params.slotProps.input,
 							startAdornment: (
 								<InputAdornment position="start">
 									<AspectIcon aspect={value} size={22} />

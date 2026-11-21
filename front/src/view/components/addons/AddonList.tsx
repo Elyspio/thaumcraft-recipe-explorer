@@ -30,7 +30,13 @@ export function AddonList() {
 			<Typography variant="eyebrow" sx={{ mb: 1 }}>
 				Addons
 			</Typography>
-			<Stack direction="row" flexWrap="wrap" gap={1}>
+			<Stack
+				direction="row"
+				sx={{
+					flexWrap: "wrap",
+					gap: 1,
+				}}
+			>
 				{addonKeys.map((id) => (
 					<AddonToggle key={id} id={id} />
 				))}

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "vite-plus/test";
 import { decodeImage } from "@/core/vision/decode";
 import { defaultDetectOptions, detect } from "@/core/vision/detect";
 import { loadReferenceIcons } from "@/core/vision/references";

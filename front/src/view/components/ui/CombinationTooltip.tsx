@@ -18,7 +18,13 @@ export function CombinationTooltip({ aspect }: { aspect: AspectName }) {
 	return (
 		<Box sx={{ p: 1.25 }}>
 			{combo ? (
-				<Stack direction="row" alignItems="center" spacing={0.75}>
+				<Stack
+					direction="row"
+					spacing={0.75}
+					sx={{
+						alignItems: "center",
+					}}
+				>
 					<AspectGlyph aspect={combo[0]} size={30} showKey />
 					<Operator>+</Operator>
 					<AspectGlyph aspect={combo[1]} size={30} showKey />
@@ -26,7 +32,12 @@ export function CombinationTooltip({ aspect }: { aspect: AspectName }) {
 					<AspectGlyph aspect={aspect} size={30} showKey />
 				</Stack>
 			) : (
-				<Stack alignItems="center" spacing={0.5}>
+				<Stack
+					spacing={0.5}
+					sx={{
+						alignItems: "center",
+					}}
+				>
 					<AspectGlyph aspect={aspect} size={32} showKey />
 					<Typography variant="eyebrow">Primordial aspect</Typography>
 				</Stack>

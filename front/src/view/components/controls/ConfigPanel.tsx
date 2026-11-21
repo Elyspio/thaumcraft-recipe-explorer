@@ -44,18 +44,28 @@ export function ConfigPanel() {
 				<Tooltip title="Thaumcraft 4.2.2.0 with every addon enabled" arrow placement="top">
 					<Stack
 						direction="row"
-						alignItems="center"
-						justifyContent="space-between"
-						sx={(t) => ({
-							px: 1.25,
-							py: 0.75,
-							borderRadius: `${t.shape.borderRadius}px`,
-							border: `1px solid ${gtnh ? t.palette.custom.accent : t.palette.custom.line}`,
-							backgroundColor: gtnh ? t.palette.custom.accentSoft : "transparent",
-							transition: "border-color 120ms ease, background-color 120ms ease",
-						})}
+						sx={[
+							{
+								alignItems: "center",
+								justifyContent: "space-between",
+							},
+							(t) => ({
+								px: 1.25,
+								py: 0.75,
+								borderRadius: `${t.shape.borderRadius}px`,
+								border: `1px solid ${gtnh ? t.palette.custom.accent : t.palette.custom.line}`,
+								backgroundColor: gtnh ? t.palette.custom.accentSoft : "transparent",
+								transition: "border-color 120ms ease, background-color 120ms ease",
+							}),
+						]}
 					>
-						<Stack direction="row" spacing={1} alignItems="center">
+						<Stack
+							direction="row"
+							spacing={1}
+							sx={{
+								alignItems: "center",
+							}}
+						>
 							<AutoFixHighRoundedIcon sx={{ fontSize: 18, color: gtnh ? "accent.main" : "text.disabled" }} />
 							<Box>
 								<Typography sx={{ fontSize: 13.5, fontWeight: 600, lineHeight: 1.1 }}>GTNH 2.9</Typography>

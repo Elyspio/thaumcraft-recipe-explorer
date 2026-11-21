@@ -27,12 +27,14 @@ export function PairComposer({ pairs }: { pairs: NotePair[] }) {
 	return (
 		<Stack spacing={1.25}>
 			{pairs.map((pair) => (
-				<Paper
-					key={pair.id}
-					variant="outlined"
-					sx={(t) => ({ p: 1.5, borderColor: t.palette.custom.line, borderRadius: `${Number(t.shape.borderRadius) * 1.5}px` })}
-				>
-					<Stack direction="row" spacing={1} alignItems="center">
+				<Paper key={pair.id} variant="outlined" sx={(t) => ({ p: 1.5, borderColor: t.palette.custom.line, borderRadius: `${Number(t.shape.borderRadius) * 1.5}px` })}>
+					<Stack
+						direction="row"
+						spacing={1}
+						sx={{
+							alignItems: "center",
+						}}
+					>
 						<Box sx={{ flex: 1, minWidth: 0 }}>
 							<AspectSelect label="From" value={pair.from} onChange={(a: AspectName) => setPairAspect(pair.id, "from", a)} />
 						</Box>

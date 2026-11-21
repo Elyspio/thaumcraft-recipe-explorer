@@ -60,8 +60,22 @@ export function AspectGrid() {
 
 	return (
 		<Stack spacing={1.5}>
-			<Stack direction="row" alignItems="center" justifyContent="space-between" flexWrap="wrap" gap={1}>
-				<Stack direction="row" spacing={1} alignItems="baseline">
+			<Stack
+				direction="row"
+				sx={{
+					alignItems: "center",
+					justifyContent: "space-between",
+					flexWrap: "wrap",
+					gap: 1,
+				}}
+			>
+				<Stack
+					direction="row"
+					spacing={1}
+					sx={{
+						alignItems: "baseline",
+					}}
+				>
 					<Typography variant="h3">Available Aspects</Typography>
 					<Typography variant="eyebrow">
 						{availableCount} / {aspects.length}
@@ -76,11 +90,15 @@ export function AspectGrid() {
 					</Button>
 				</Stack>
 			</Stack>
-
-			<Typography variant="body2" color="text.secondary" sx={{ mt: -0.5 }}>
+			<Typography
+				variant="body2"
+				sx={{
+					color: "text.secondary",
+					mt: -0.5,
+				}}
+			>
 				Click an aspect to disable it — the search will then avoid it where possible.
 			</Typography>
-
 			<Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
 				{aspects.map((aspect) => (
 					<AspectTile key={aspect} aspect={aspect} />

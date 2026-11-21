@@ -15,25 +15,25 @@ This is a pnpm workspace. The browser app lives in `front/` and uses React 19, T
 
 ## Build, Test, and Development Commands
 
-Use Node.js 22 or newer and pnpm 11.21.0.
+Use Node.js 26 or newer and pnpm 12.5.1.
 
 ```bash
 pnpm install                 # install workspace dependencies
 pnpm dev                     # start the frontend dev server
 pnpm build                   # type-check and create a production build
 pnpm test                    # run Vitest tests
-pnpm lint                    # run ESLint through Vite Plus
+pnpm lint                    # run Oxlint through Vite Plus (type-aware)
 pnpm preview                 # serve the production build locally
 pnpm deploy:dry-run          # validate deployment generation without publishing
 ```
 
 ## Coding Style & Naming Conventions
 
-Use TypeScript with React function components and existing path aliases. Match the repository’s tab indentation and run Prettier and ESLint before submitting. Use PascalCase for component files and exported components, camelCase for functions and variables, and lowercase aspect identifiers/data keys. Keep UI styling in the existing MUI `sx`/theme system unless a feature requires otherwise.
+Use TypeScript with React function components and existing path aliases. Match the repository’s tab indentation and run `pnpm --dir front check` (Oxfmt + Oxlint + type check through Vite Plus) before submitting. Use PascalCase for component files and exported components, camelCase for functions and variables, and lowercase aspect identifiers/data keys. Keep UI styling in the existing MUI `sx`/theme system unless a feature requires otherwise.
 
 ## Testing Guidelines
 
-Tests use Vitest and live beside the code they exercise, using the `*.test.ts` or `*.test.tsx` pattern (for example, `front/src/core/pathfinding/find.test.ts`). Add tests for pathfinding, data integrity, and edge cases such as disabled or unreachable aspects. No coverage threshold is declared; cover changed behavior directly. Run `pnpm --dir front test` before opening a pull request.
+Tests use Vitest (through Vite Plus: import from `vite-plus/test`) and live beside the code they exercise, using the `*.test.ts` or `*.test.tsx` pattern (for example, `front/src/core/pathfinding/find.test.ts`). Add tests for pathfinding, data integrity, and edge cases such as disabled or unreachable aspects. No coverage threshold is declared; cover changed behavior directly. Run `pnpm --dir front test` before opening a pull request.
 
 ## Commit & Pull Request Guidelines
 

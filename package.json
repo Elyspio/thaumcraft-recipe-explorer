@@ -15,11 +15,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@11.21.0",
+  "packageManager": "pnpm@12.5.1",
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
-      "version": "11.21.0",
+      "version": "12.5.1",
       "onFail": "download"
     }
   },

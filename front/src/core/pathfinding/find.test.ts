@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "vite-plus/test";
 import { buildVersionModel } from "@data/model";
 import { translate } from "@data/aspectMeta";
 import { buildGraph, type Graph } from "./graph";
